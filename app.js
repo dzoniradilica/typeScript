@@ -1,12 +1,31 @@
-function add(n1, n2, shoResult, phrase) {
-    if (shoResult) {
-        console.log("".concat(phrase, " ").concat(n1 + n2));
-    }
-    else
-        return console.log(n1 - n2);
-}
-var number1 = 5;
-var number2 = 1.8;
-var printResult = true;
-var resultPhrase = 'Result is:';
-add(number1, number2, printResult, resultPhrase);
+// const person: {
+//   name: string;
+//   age: number;
+// }
+// const person: {
+//   name: string;
+//   age: number;
+//   hobbies: string[];
+//   role: [number, string];
+// } = {
+//   name: 'Nikola',
+//   age: 20,
+//   hobbies: ['sports', 'fishing'],
+//   role: [2, 'author'],
+// };
+var Role;
+(function (Role) {
+    Role[Role["ADMIN"] = 5] = "ADMIN";
+    Role[Role["READ_ONLY"] = 6] = "READ_ONLY";
+    Role[Role["AUTHOR"] = 7] = "AUTHOR";
+})(Role || (Role = {}));
+var person = {
+    name: 'Nikola',
+    age: 20,
+    hobbies: ['sports', 'fishing'],
+    role: Role.ADMIN,
+};
+var favActivites;
+favActivites = ['sport'];
+if (person.role === Role.ADMIN)
+    console.log('is admin');
