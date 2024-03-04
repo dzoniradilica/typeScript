@@ -21,6 +21,8 @@ type Numeric = number | boolean;
 
 type Universal = Combine & Numeric;
 
+function add(n1: number, n2: number): number;
+function add(n1: string, n2: string): string;
 function add(n1: Combine, n2: Combine) {
   if (typeof n1 === 'string' || typeof n2 === 'string') {
     return n1.toString() + n2.toString();
@@ -28,6 +30,16 @@ function add(n1: Combine, n2: Combine) {
 
   return n1 + n2;
 }
+
+const result = add('Dzoni', 'Savic');
+
+const fetchUserData = {
+  id: 'ul',
+  name: 'dzoni',
+  //   job: { title: 'programer', description: 'Sta znam' },
+};
+
+console.log(fetchUserData?.job?.title);
 
 type UnknownEmployee = Employee | Admin;
 
@@ -104,3 +116,12 @@ moveAnimal({ type: 'horse', runningSpeed: 10 });
 const userInput = document.querySelector('#userInput')! as HTMLInputElement;
 
 userInput.value = 'Hi there';
+
+interface ErrorContainer {
+  [prop: string]: string;
+}
+
+const errorBag: ErrorContainer = {
+  email: 'Not a valid email!',
+  username: 'Must start with a capital character!',
+};
