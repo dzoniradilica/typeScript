@@ -1,62 +1,37 @@
-class Department {
-  //   private name: string;
-  private employees: string[] = [];
+interface addFn {
+  (a: number, b: number): number;
+}
 
-  constructor(private name: string, public readonly id: string) {
-    // this.name = n;
+let add: addFn;
+
+add = (n1: number, n2: number) => n1 + n2;
+
+interface Named {
+  readonly name?: string;
+  outputName?: string;
+}
+
+interface Greetable extends Named {
+  greet(phrase: string): void;
+}
+
+class Person implements Greetable {
+  name?: string;
+  age: number = 20;
+
+  constructor(n?: string) {
+    if (n) this.name = n;
   }
 
-  describe() {
-    console.log('Department:' + this.name + this.id);
-  }
-
-  addEmployee(employee: string) {
-    this.employees.push(employee);
-  }
-
-  printEmployee() {
-    console.log(this.employees.length);
-    console.log(this.employees);
+  greet(phrase: string) {
+    if (this.name) {
+      console.log(`${phrase} ${this.name}`);
+    } else console.log('hi');
   }
 }
 
-class ITDepartment extends Department {
-  private lastReport: string;
+let user1: Greetable;
 
-  admins: string[];
-  constructor(id: string, admins: string[]) {
-    super(id, 'djes');
-    this.admins = admins;
-    this.lastReport = admins[0];
-  }
-}
+user1 = new Person();
 
-class AccountingDepartment extends Department {
-  private lastReporte: string;
-  reports: string[];
-
-  constructor(id: string) {
-    super(id, 'newID');
-    this.reports = [];
-    this.lastReporte = this.reports[0];
-  }
-
-  addReports(text: string) {
-    this.reports.push(text);
-  }
-
-  get readLastReporte() {
-    if (this.lastReporte) {
-      return this.lastReporte;
-    } else throw new Error('ne valja');
-  }
-}
-
-const acc = new AccountingDepartment('ok');
-acc.addReports('opic');
-
-console.log(acc.reports);
-
-// acc.readLastReporte;
-
-console.log(acc);
+user1.greet('Cao ja sam');
