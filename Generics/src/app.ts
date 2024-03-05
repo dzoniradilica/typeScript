@@ -77,3 +77,5 @@ function createCourseGoal(
 
   return courseGoal as CourseGoal;
 }
+
+const names: Readonly<string[]> = ['max', 'dzoni'];
