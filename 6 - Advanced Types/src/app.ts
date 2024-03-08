@@ -1,6 +1,6 @@
 type Admin = {
   name: string;
-  peivalges: string[];
+  privilages: string[];
 };
 
 type Employee = {
@@ -8,22 +8,22 @@ type Employee = {
   startDate: Date;
 };
 
-type ElevateEmployee = Admin & Employee;
+type ElevatedEmployee = Admin & Employee;
 
-const e1: ElevateEmployee = {
+const e1: ElevatedEmployee = {
   name: 'Dzoni',
-  peivalges: ['Create-Server'],
+  privilages: ['create-server'],
   startDate: new Date(),
 };
 
-type Combine = string | number;
+type Combinable = string | number;
 type Numeric = number | boolean;
 
-type Universal = Combine & Numeric;
+type Universal = Combinable & Numeric;
 
 function add(n1: number, n2: number): number;
 function add(n1: string, n2: string): string;
-function add(n1: Combine, n2: Combine) {
+function add(n1: Combinable, n2: Combinable) {
   if (typeof n1 === 'string' || typeof n2 === 'string') {
     return n1.toString() + n2.toString();
   }
@@ -31,97 +31,102 @@ function add(n1: Combine, n2: Combine) {
   return n1 + n2;
 }
 
-const result = add('Dzoni', 'Savic');
+const result = add('Nikola', ' Savic');
+console.log(result);
 
-const fetchUserData = {
-  id: 'ul',
-  name: 'dzoni',
-  //   job: { title: 'programer', description: 'Sta znam' },
+const fetchedUserData = {
+  id: 'u1',
+  name: 'Dzoni',
+  job: { title: 'CEO', description: 'My company' },
 };
 
-console.log(fetchUserData?.job?.title);
+console.log(fetchedUserData?.job?.title);
 
-type UnknownEmployee = Employee | Admin;
+const userInput = null;
 
-function printEmployeeInfo(emp: UnknownEmployee) {
-  console.log(`name: ${emp.name}`);
+const storedData = userInput ?? 'DEFAULT';
 
-  if ('privilages' in emp) {
-    console.log(`Privilages: ${emp.privilages}`);
-  }
+console.log(storedData);
 
-  if ('startDate' in emp) console.log(`Start date: ${emp.startDate}`);
-}
+// type UnknownEmployee = Employee | Admin;
 
-printEmployeeInfo({ name: 'dzoni', startDate: new Date() });
+// function printEmployeeInformation(emp: UnknownEmployee) {
+//   console.log(`Name: ${emp.name}`);
 
-class Car {
-  drive() {
-    console.log('Driving');
-  }
-}
+//   if ('privilages' in emp) {
+//     console.log(`Privilages: ${emp.privilages}`);
+//   }
 
-class Truck {
-  drive() {
-    console.log('Driving truck');
-  }
+//   if ('startDate' in emp) {
+//     console.log(`Start date: ${emp.startDate}`);
+//   }
+// }
 
-  loadCargo(amount: number) {
-    console.log(`Loading cargo ${amount}`);
-  }
-}
+// printEmployeeInformation(e1);
 
-type Vecihle = Car | Truck;
+// class Car {
+//   drive() {
+//     console.log('Driving');
+//   }
+// }
 
-const v1 = new Car();
-const v2 = new Truck();
+// class Truck {
+//   drive() {
+//     console.log('Driving truck');
+//   }
 
-function useVecihle(vecihle: Vecihle) {
-  vecihle.drive();
+//   loadCargo(amount: number) {
+//     console.log(`Loading cargo...${amount}`);
+//   }
+// }
 
-  if (vecihle instanceof Truck) vecihle.loadCargo(1000);
-}
+// type Vecihle = Car | Truck;
 
-useVecihle(v2);
+// const v1 = new Car();
+// const v2 = new Truck();
 
-interface Bird {
-  type: 'bird';
-  flyingSpeed: number;
-}
+// function useVecihle(vecihle: Vecihle) {
+//   vecihle.drive();
 
-interface Horse {
-  type: 'horse';
-  runningSpeed: number;
-}
+//   if (vecihle instanceof Truck) {
+//     vecihle.loadCargo(200);
+//   }
+// }
 
-type Animal = Bird | Horse;
+// useVecihle(v1);
+// useVecihle(v2);
 
-function moveAnimal(animal: Animal) {
-  let speed;
+// interface Bird {
+//   type: 'bird';
+//   flyingSpeed: number;
+// }
 
-  switch (animal.type) {
-    case 'bird':
-      speed = animal.flyingSpeed;
-      break;
-    case 'horse':
-      speed = animal.runningSpeed;
-  }
+// interface Horse {
+//   type: 'horse';
+//   runningSpeed: number;
+// }
 
-  console.log(`Moving with: ${speed}`);
-}
+// type Animal = Bird | Horse;
 
-moveAnimal({ type: 'horse', runningSpeed: 10 });
+// function moveAnimal(animal: Animal) {
+//   if (animal.type === 'bird')
+//     console.log(`Bird speed is ${animal.flyingSpeed}`);
 
-// const userInput = <HTMLInputElement> document.querySelector('#userInput');
-const userInput = document.querySelector('#userInput')! as HTMLInputElement;
+//   if (animal.type === 'horse')
+//     console.log(`Horse speed is ${animal.runningSpeed}`);
+// }
 
-userInput.value = 'Hi there';
+// moveAnimal({ type: 'bird', flyingSpeed: 200 });
 
-interface ErrorContainer {
-  [prop: string]: string;
-}
+// const userInput = document.querySelector('#userInput')! as HTMLInputElement;
 
-const errorBag: ErrorContainer = {
-  email: 'Not a valid email!',
-  username: 'Must start with a capital character!',
-};
+// userInput.value = 'Djes';
+
+// interface ErrorContainer {
+//   [prop: string]: string;
+// }
+
+// const errorBag: ErrorContainer = {
+//   email: 'Not a valid email',
+//   username: 'Must start with a capital character',
+// };
