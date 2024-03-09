@@ -148,6 +148,7 @@ function Required(target: any, propName: string) {
 
 function PositiveNumber(target: any, propName: string) {
   registraredValidators[target.constructor.name] = {
+    ...registraredValidators[target.constructor.name],
     [propName]: ['positive'],
   };
 }
